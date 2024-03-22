@@ -26,8 +26,6 @@ export function RawDataGraph() {
 			dataKey="resultTime"
 			series={[{ name: 'availDur', color: 'blue.6', label: 'Avail Duration' }]}
 			curveType="monotone"
-			tickLine="xy"
-			gridAxis="xy"
 			p={24}
 			withDots={false}
 		/>
