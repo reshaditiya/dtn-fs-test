@@ -17,21 +17,24 @@ function RawDataCard() {
 		cellId: '',
 		dateRange: [],
 	});
-	const handlerGraph = useSWR(['raw-data', filter], (key) =>
-		axios
-			.get(`${process.env.NEXT_PUBLIC_API}/${key[0]}`, {
-				params: {
-					enodebId: filter.enodebId,
-					cellId: filter.cellId,
-					startDate: filter.dateRange[0]
-						? dayjs(filter.dateRange[0]).toISOString()
-						: undefined,
-					endDate: filter.dateRange[1]
-						? dayjs(filter.dateRange[1]).toISOString()
-						: undefined,
-				},
-			})
-			.then((res) => res.data)
+	const handlerGraph = useSWR(
+		['raw-data', filter],
+		(key) =>
+			axios
+				.get(`${process.env.NEXT_PUBLIC_API}/${key[0]}`, {
+					params: {
+						enodebId: filter.enodebId,
+						cellId: filter.cellId,
+						startDate: filter.dateRange[0]
+							? dayjs(filter.dateRange[0]).toISOString()
+							: undefined,
+						endDate: filter.dateRange[1]
+							? dayjs(filter.dateRange[1]).toISOString()
+							: undefined,
+					},
+				})
+				.then((res) => res.data),
+		{ revalidateOnFocus: false, shouldRetryOnError: false }
 	);
 
 	return (
@@ -42,7 +45,7 @@ function RawDataCard() {
 					zIndex={1000}
 					overlayProps={{ radius: 'sm', blur: 2 }}
 				/>
-				<Card shadow="sm" padding="lg" radius="md" withBorder miw={500}>
+				<Card shadow="sm" padding="lg" radius="md" withBorder w={500}>
 					<Stack>
 						<Card.Section>
 							<RawDataGraph />

@@ -1,8 +1,12 @@
 import { Button, Stack, TextInput } from '@mantine/core';
 import { DatePickerInput } from '@mantine/dates';
 import { useForm } from '@mantine/form';
+import { useContext } from 'react';
+import { GraphContext } from './card';
+import { SWRResponse } from 'swr';
 
 export function RawDataFilter({ setFilter }: { setFilter: Function }) {
+	const graphHandler = useContext<SWRResponse>(GraphContext);
 	const form = useForm({
 		initialValues: {
 			enodebId: '',
@@ -22,7 +26,9 @@ export function RawDataFilter({ setFilter }: { setFilter: Function }) {
 					clearable
 					{...form.getInputProps('dateRange')}
 				/>
-				<Button type="submit">Apply</Button>
+				<Button type="submit" loading={graphHandler.isLoading}>
+					Apply
+				</Button>
 			</Stack>
 		</form>
 	);
