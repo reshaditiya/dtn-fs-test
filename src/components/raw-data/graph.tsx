@@ -1,5 +1,4 @@
 import { AreaChart } from '@mantine/charts';
-import { data } from './data';
 import { SWRResponse } from 'swr';
 import { useContext, useMemo } from 'react';
 import dayjs from 'dayjs';
@@ -8,7 +7,7 @@ import { GraphContext } from './card';
 export function RawDataGraph() {
 	const handlerGraph: SWRResponse = useContext(GraphContext);
 	const formattedValue = useMemo(() => {
-		if (data) {
+		if (handlerGraph?.data) {
 			return handlerGraph?.data?.map(
 				(val: { availDur: number; resultTime: string }) => ({
 					...val,
@@ -16,7 +15,7 @@ export function RawDataGraph() {
 				})
 			);
 		}
-		return data;
+		return [];
 	}, [handlerGraph?.data]);
 
 	return (

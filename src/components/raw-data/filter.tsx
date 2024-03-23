@@ -9,8 +9,8 @@ export function RawDataFilter({ setFilter }: { setFilter: Function }) {
 	const graphHandler = useContext<SWRResponse>(GraphContext);
 	const form = useForm({
 		initialValues: {
-			enodebId: '',
-			cellId: '',
+			enodebId: undefined,
+			cellId: undefined,
 			dateRange: [],
 		},
 	});

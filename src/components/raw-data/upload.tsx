@@ -61,7 +61,7 @@ export function RawDataUpload() {
 					<Dropzone
 						onDrop={(files) => form.setFieldValue('file', files[0])}
 						accept={[MIME_TYPES.csv]}
-						h={214}
+						h={204}
 						maxFiles={1}
 						{...form.getInputProps('file')}
 					>

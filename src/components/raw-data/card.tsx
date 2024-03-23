@@ -13,8 +13,8 @@ export const GraphContext = createContext<any>({});
 
 function RawDataCard() {
 	const [filter, setFilter] = useState({
-		enodebId: '',
-		cellId: '',
+		enodebId: undefined,
+		cellId: undefined,
 		dateRange: [],
 	});
 	const handlerGraph = useSWR(
